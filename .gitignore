@@ -1,0 +1,12 @@
+# Operating-system metadata
+.DS_Store
+__MACOSX/
+
+# Local development automation and planning artifacts
+.claude/
+.planning/
+.code-review-graph/
+
+# Generated archives and logs
+*.zip
+*.log
