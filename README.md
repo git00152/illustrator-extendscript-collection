@@ -8,7 +8,7 @@ Adobe Illustrator で実行する、制作作業向けの ExtendScript（`.jsx`�
 
 | スクリプト | 役割 | 実行対象 |
 | --- | --- | --- |
-| [`angle-reset`](scripts/angle-reset/angle-reset.jsx) | 選択オブジェクトの回転・シアー・拡大縮小をリセットします。配置画像、ラスタ画像、クリッピンググループ、グループ、テキスト、長方形、直線を扱います。 | 選択オブジェクト |
+| [`angle-reset`](scripts/angle-reset/angle-reset.jsx) | 選択オブジェクトの回転・シアー・拡大縮小をリセットします。配置画像、ラスタ画像、クリッピンググループ、グループ、テキスト、四点の閉パス、直線を扱います。 | 選択オブジェクト |
 | [`curve-converter-v2`](scripts/curve-converter-v2/curve-converter-v2.jsx) | 長方形または凸多角形の角を、スーパー楕円・G2・クロソイド・G3 の曲線に変換します。角ごとの適用、プレビュー、キャンセル時の復元に対応します。 | 選択したパス |
 | [`curve-optimizer`](scripts/curve-optimizer/curve-optimizer.jsx) | 選択パスのアンカーに G2 曲率連続補正を適用し、曲率コムをプレビュー表示します。 | 編集可能な選択パス |
 | [`trim-marks`](scripts/trim-marks/trim-marks.jsx) | 選択オブジェクトの外接矩形を基準に、指定間隔（mm）のトリムマークを専用レイヤーへ生成します。 | 選択オブジェクト |

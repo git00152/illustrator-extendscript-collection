@@ -10,3 +10,10 @@ __MACOSX/
 # Generated archives and logs
 *.zip
 *.log
+
+# Credentials and signing materials
+.env
+.env.*
+*.key
+*.pem
+*.p12
