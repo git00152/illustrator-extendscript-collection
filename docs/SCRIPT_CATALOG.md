@@ -42,6 +42,19 @@
 
 ## Production tools
 
+### `scripts/artboard-name-from-filename/artboard-name-from-filename.jsx`
+
+- 役割: 保存済みAIファイルのファイル名を、アートボード名に反映します。
+- 動作: アートボードが複数ある場合は2桁以上の連番を付け、変更中のエラー時は元の名称へ戻します。
+- 注意: ファイル名を取得するため、先にAIファイルを保存してください。
+
+### `scripts/artboard-submission-info/artboard-submission-info.jsx`
+
+- 役割: 各アートボードの名称を元に、入稿情報のテキストを作成します。
+- 対象: アクティブドキュメント内のすべてのアートボードです。
+- 動作: フォントサイズ15 ptで、各アートボード左上から横・縦とも10 mmの位置に配置します。トリムマークは作成しません。
+- 注意: Illustrator内のテキストとレイヤーを変更するため、事前に複製ファイルで確認してください。
+
 ### `scripts/trim-marks/trim-marks.jsx`
 
 - 役割: 選択オブジェクトの `geometricBounds` を基準にトリムマークを生成します。

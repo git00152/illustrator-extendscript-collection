@@ -4,12 +4,21 @@ __MACOSX/
 
 # Local development automation and planning artifacts
 .claude/
+.codex/
+.agents/
 .planning/
 .code-review-graph/
+.idea/
+.vscode/
 
 # Generated archives and logs
 *.zip
 *.log
+*.ai
+*.ait
+*.pdf
+*~
+*.swp
 
 # Credentials and signing materials
 .env
@@ -17,3 +26,9 @@ __MACOSX/
 *.key
 *.pem
 *.p12
+*.pfx
+*.cer
+*.crt
+*.mobileprovision
+credentials.json
+secrets.json
