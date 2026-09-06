@@ -139,6 +139,20 @@
         };
     }
 
+    function getSubmissionDimensions(artboardRect, params) {
+        if (params.manualSize) {
+            if (!isFiniteNumber(params.manualWidth) || params.manualWidth <= 0 ||
+                !isFiniteNumber(params.manualHeight) || params.manualHeight <= 0) {
+                throw new Error("手動入力のサイズが不正です。");
+            }
+            return {
+                width: params.manualWidth,
+                height: params.manualHeight
+            };
+        }
+        return calculatePhysicalDimensions(artboardRect, params.scale);
+    }
+
     function isBlankString(value) {
         var i;
         var code;
@@ -175,7 +189,7 @@
     }
 
     function buildLabel(artboardName, artboardRect, params) {
-        var dimensions = calculatePhysicalDimensions(artboardRect, params.scale);
+        var dimensions = getSubmissionDimensions(artboardRect, params);
         return artboardName + "   W" + dimensions.width + "*H" + dimensions.height +
             " 数量" + params.quantity + " スケール1/" + params.scale;
     }
@@ -252,7 +266,7 @@
                 rect: rect,
                 targetLeft: targetLeft,
                 targetTop: targetTop,
-                dimensions: calculatePhysicalDimensions(rect, params.scale)
+                dimensions: getSubmissionDimensions(rect, params)
             });
         }
         return plans;
@@ -278,12 +292,26 @@
         return value;
     }
 
+    function parseManualDimension(text, label) {
+        var value = Number(text);
+
+        if (!isFiniteNumber(value) || value <= 0) {
+            alert(label + "は0より大きい数値で入力してください。");
+            return null;
+        }
+        return value;
+    }
+
     function showDialog() {
         var dialog = new Window("dialog", SCRIPT_NAME);
         var quantityGroup;
         var quantityInput;
         var scaleGroup;
         var scaleInput;
+        var manualSizeCheckbox;
+        var manualSizeGroup;
+        var manualWidthInput;
+        var manualHeightInput;
         var outlineCheckbox;
         var buttonGroup;
         var okButton;
@@ -303,6 +331,25 @@
         scaleInput = scaleGroup.add("edittext", undefined, "1");
         scaleInput.characters = 8;
 
+        manualSizeCheckbox = dialog.add("checkbox", undefined, "サイズを手動入力する");
+        manualSizeCheckbox.value = false;
+
+        manualSizeGroup = dialog.add("group");
+        manualSizeGroup.add("statictext", undefined, "サイズ（mm）： W");
+        manualWidthInput = manualSizeGroup.add("edittext", undefined, "");
+        manualWidthInput.characters = 8;
+        manualSizeGroup.add("statictext", undefined, "* H");
+        manualHeightInput = manualSizeGroup.add("edittext", undefined, "");
+        manualHeightInput.characters = 8;
+        manualSizeGroup.enabled = false;
+
+        manualSizeCheckbox.onClick = function () {
+            manualSizeGroup.enabled = manualSizeCheckbox.value;
+            if (manualSizeCheckbox.value) {
+                manualWidthInput.active = true;
+            }
+        };
+
         outlineCheckbox = dialog.add("checkbox", undefined, "文字をアウトライン化する");
         outlineCheckbox.value = false;
 
@@ -314,6 +361,8 @@
         okButton.onClick = function () {
             var quantity = parsePositiveInteger(quantityInput.text, "数量");
             var scale;
+            var manualWidth = null;
+            var manualHeight = null;
 
             if (quantity === null) {
                 return;
@@ -322,9 +371,22 @@
             if (scale === null) {
                 return;
             }
+            if (manualSizeCheckbox.value) {
+                manualWidth = parseManualDimension(manualWidthInput.text, "W");
+                if (manualWidth === null) {
+                    return;
+                }
+                manualHeight = parseManualDimension(manualHeightInput.text, "H");
+                if (manualHeight === null) {
+                    return;
+                }
+            }
             result = {
                 quantity: quantity,
                 scale: scale,
+                manualSize: manualSizeCheckbox.value,
+                manualWidth: manualWidth,
+                manualHeight: manualHeight,
                 outline: outlineCheckbox.value
             };
             dialog.close(true);
@@ -1798,11 +1860,13 @@
             mmToPt: mmToPt,
             ptToMm: ptToMm,
             calculatePhysicalDimensions: calculatePhysicalDimensions,
+            getSubmissionDimensions: getSubmissionDimensions,
             getArtboardName: getArtboardName,
             buildLabel: buildLabel,
             getArtboardPlan: getArtboardPlan,
             parsePositiveInteger: parsePositiveInteger,
             parseScale: parseScale,
+            parseManualDimension: parseManualDimension,
             createBlackColor: createBlackColor,
             validateManagedOutputOwnership: validateManagedOutputOwnership,
             validateOutputItem: validateOutputItem,

@@ -10,7 +10,7 @@ Adobe Illustrator で実行する、制作作業向けの ExtendScript（`.jsx`�
 | --- | --- | --- |
 | [`angle-reset`](scripts/angle-reset/angle-reset.jsx) | 選択オブジェクトの回転・シアー・拡大縮小をリセットします。配置画像、ラスタ画像、クリッピンググループ、グループ、テキスト、四点の閉パス、直線を扱います。 | 選択オブジェクト |
 | [`artboard-name-from-filename`](scripts/artboard-name-from-filename/artboard-name-from-filename.jsx) | 保存済みAIファイルのファイル名を元に、全アートボードの名称を連番付きで設定します。 | アクティブドキュメント |
-| [`artboard-submission-info`](scripts/artboard-submission-info/artboard-submission-info.jsx) | 各アートボードの名称を元に入稿情報を作成し、左上から10 mmの位置に15 ptで配置します。 | 全アートボード |
+| [`artboard-submission-info`](scripts/artboard-submission-info/artboard-submission-info.jsx) | 各アートボードの名称を元に入稿情報を作成し、左上から10 mmの位置に15 ptで配置します。サイズは自動計算とW・Hの手動入力を選択できます。 | 全アートボード |
 | [`curve-converter-v2`](scripts/curve-converter-v2/curve-converter-v2.jsx) | 長方形または凸多角形の角を、スーパー楕円・G2・クロソイド・G3 の曲線に変換します。角ごとの適用、プレビュー、キャンセル時の復元に対応します。 | 選択したパス |
 | [`curve-optimizer`](scripts/curve-optimizer/curve-optimizer.jsx) | 選択パスのアンカーに G2 曲率連続補正を適用し、曲率コムをプレビュー表示します。 | 編集可能な選択パス |
 | [`trim-marks`](scripts/trim-marks/trim-marks.jsx) | 選択オブジェクトの外接矩形を基準に、指定間隔（mm）のトリムマークを専用レイヤーへ生成します。 | 選択オブジェクト |
