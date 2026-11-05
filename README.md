@@ -1,5 +1,7 @@
 # Adobe Illustrator ExtendScript Collection
 
+日本語 | [English](README.en.md)
+
 Adobe Illustrator で実行する、制作作業向けの ExtendScript（`.jsx`）集です。各スクリプトはアクティブドキュメントまたは選択オブジェクトを変更します。実行前に `.ai` ファイルを保存し、まず複製ファイルで動作を確認してください。
 
 これは非公式の個人プロジェクトです。Adobe Inc. と提携・承認・認定・後援関係にはありません。スクリプトは自動更新、外部ファイルの自動ダウンロード、ダウンロード済みファイルの自動実行を行いません。
